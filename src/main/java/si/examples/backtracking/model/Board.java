@@ -116,6 +116,17 @@ public class Board {
         return board;
     }
 
+    public boolean isFull(){
+        for(int i = 0; i < NUM_ROWS; i++){
+            for(int j = 0; j < NUM_COLS; j++){
+                if(board[i][j] == 0){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();

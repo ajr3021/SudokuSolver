@@ -1,12 +1,13 @@
 package si.examples.backtracking.model;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public class SudokuSolver implements Configuration{
-    private int row;
-    private int col;
+    private final int row;
+    private final int col;
     private final Board board;
     private boolean wasLastMoveValid;
 
@@ -34,7 +35,7 @@ public class SudokuSolver implements Configuration{
                     successors.add(new SudokuSolver(row, newCol, newBoard, wasLastMoveValid));
                 }
             }
-        }else{
+        }else {
             int newCol = (col + 1) % Board.NUM_COLS;
             if(newCol == 0){
                 successors.add(new SudokuSolver(row + 1, newCol, board.boardCopy(), true));
@@ -53,7 +54,7 @@ public class SudokuSolver implements Configuration{
 
     @Override
     public boolean isGoal() {
-        return row == Board.NUM_ROWS - 1 && col == Board.NUM_COLS - 1  && isValid() && board.getBoard()[row][col] != 0;
+        return board.isFull();
     }
 
     public Board getBoard() {

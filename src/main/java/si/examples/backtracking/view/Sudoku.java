@@ -22,7 +22,7 @@ public class Sudoku extends Application implements BoardObserver {
 
     private final BoardButton[][] boardButtons = new BoardButton[Board.NUM_ROWS][Board.NUM_COLS];
     private final Board board = new Board();
-    private final Board originalBoard = board.boardCopy();
+    private Board originalBoard = board.boardCopy();
 
     public Sudoku() throws IOException {
     }
@@ -75,6 +75,7 @@ public class Sudoku extends Application implements BoardObserver {
         newGame.setOnAction(e -> {
             try {
                 board.newBoard();
+                originalBoard = board.boardCopy();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
